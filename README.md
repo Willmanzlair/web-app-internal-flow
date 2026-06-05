@@ -6,6 +6,8 @@
 
 This repo was created to understand and internalize how a modern web application works internally, from frontend interaction through JavaScript behaviour, backend processing, authentication, API communication, database activity, and frontend rendering.
 
+This repo uses a small learning application, `reverse-eng-app`, as a practical reference point. However, the notes are written generically so the concepts can apply to most modern web applications.
+
 The goal is not simply to memorize endpoints, requests, responses, or tools. The goal is to understand how a web application behaves as a connected system, how each layer communicates with the next, and how normal application flow can be mapped during security testing.
 
 This understanding supports several important areas of offensive security, including JavaScript hunting, API testing, authentication analysis, authorization analysis, session testing, behavioural testing, business logic testing, and frontend-to-backend mapping.
