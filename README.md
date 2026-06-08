@@ -229,7 +229,7 @@ web-app-internal-flow/
 │   ├── 02-registration.md
 │   ├── 03-email-verification.md
 │   ├── 04-login.md
-│   ├── 05-login-response-and-token.md
+│   ├── 05-login-response-and-auth-state.md
 │   ├── 06-mfa-2fa.md
 │   ├── 07-session-me.md
 │   ├── 08-config.md
@@ -263,7 +263,7 @@ Part 1 follows the clean path a user commonly takes through a modern application
 2. [Registration](part-1-normal-application-flow/02-registration.md)
 3. [Email Verification](part-1-normal-application-flow/03-email-verification.md)
 4. [Login](part-1-normal-application-flow/04-login.md)
-5. [Login Response and Token](part-1-normal-application-flow/05-login-response-and-token.md)
+5. [Login Response and Auth State](part-1-normal-application-flow/05-login-response-and-auth-state.md)
 6. [MFA / 2FA](part-1-normal-application-flow/06-mfa-2fa.md)
 7. [Session Restoration and `/me`](part-1-normal-application-flow/07-session-me.md)
 8. [Config](part-1-normal-application-flow/08-config.md)
