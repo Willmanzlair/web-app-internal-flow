@@ -1,4 +1,4 @@
-# MFA / 2FA: What Happens Internally
+# MFA / 2FA
 
 ![MFA / 2FA Internal Flow](../images/mfa%20flow.png)
 
