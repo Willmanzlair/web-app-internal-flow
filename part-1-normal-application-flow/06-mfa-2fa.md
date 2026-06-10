@@ -1,5 +1,7 @@
 # MFA / 2FA: What Happens Internally
 
+![MFA / 2FA Internal Flow](../images/mfa%20flow.png)
+
 MFA, or multi-factor authentication, is the part of the authentication flow where the application requires more than a password before treating the user as fully authenticated.
 
 A password proves something the user knows. MFA adds another proof, usually something the user has, such as an authenticator app, hardware key, email code, SMS code, or backup code.
