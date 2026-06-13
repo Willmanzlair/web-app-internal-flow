@@ -394,6 +394,40 @@ Protected resource is allowed or denied
 
 This is what allows the user to remain logged in across multiple requests without repeatedly typing their password.
 
+### Identity vs Authorization
+
+A common misconception is that cookies prove identity while bearer tokens prove authorization.
+
+In reality, both session cookies and bearer tokens usually help the backend identify the current authenticated user. A bearer token may be a signed JWT, shown as a long value like `eyJ...`, and when decoded it may contain claims such as:
+
+```json
+{
+  "email": "foo@bar.com",
+  "role": "admin",
+  "scopes": ["read:users", "write:users"]
+}
+```
+
+However, the token itself is not authorization. It is proof the backend can validate to identify the user and read trusted claims.
+
+```text
+Cookie / Bearer token
+= identifies the current authenticated user
+
+Role / permissions / scopes
+= decide authorization
+```
+
+A role cookie such as:
+
+```http
+ph_role=admin
+```
+
+should not be trusted for security decisions because the browser can modify it.
+
+Authorization should come from trusted sources such as a validated session, signed JWT claims, or database-backed permissions.
+
 ---
 
 ## 9. Auth State on the Frontend
