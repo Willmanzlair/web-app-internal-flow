@@ -243,32 +243,46 @@ The landing page should not become a rabbit hole unless it exposes something cle
 
 ## 9. What to Observe From a Security/Testing Mindset
 
-The landing page is useful for fast pre-authentication mapping. It gives the tester a first look at the application’s public surface, visible flows, loaded resources, and possible future testing areas.
+The landing page is useful for quick pre-authentication reconnaissance. It helps the tester understand what the application exposes before login, which public flows exist, and what may deserve deeper testing later.
 
-Useful questions include:
+Use DevTools **Network** to inspect the page load, JavaScript files, redirects, and any API requests made before authentication. Check **Headers**, **Response**, and **Preview** for cookies, cache behaviour, CORS, public JSON, config values, feature flags, environment clues, and rate limits.
 
-* What type of application is this?
-* Is it a SaaS app, dashboard, shop, portal, admin system, API platform, or content app?
-* What user flows are visible?
-* Is registration available?
-* Is password reset available?
-* Are pricing, billing, teams, roles, or enterprise features mentioned?
-* Are JavaScript files loaded?
-* Are API endpoints visible in frontend code?
-* Are hidden or unused routes visible?
-* Does the page call any public APIs?
-* Does `/config` or similar data load before login?
-* Are feature flags visible?
-* Are environment names exposed?
-* Are third-party integrations visible?
-* Are admin, dashboard, team, billing, upload, export, or internal paths visible?
-* Does the frontend reveal behaviour that can be tested later after authentication?
+Use **Application** to review Cookies, Local Storage, and Session Storage. Use **Sources** to inspect JavaScript files for routes, API paths, feature names, and frontend logic. Use **Elements** for hidden links, disabled buttons, form fields, comments, or data attributes. Use the **Console** for frontend errors, debug output, or failed requests.
 
-The key lesson is this:
+In Burp, use **Proxy** to capture the traffic and **Repeater** to safely replay public requests and compare unauthenticated responses.
+
+Look for endpoint names, request methods, frontend routes, API paths, redirects, JavaScript bundle names, API base URLs, feature flags, environment values such as `dev`, `staging`, or `prod`, public `/config` responses, cookies and flags, CORS headers, cache headers, rate-limit headers, debug fields, hidden fields, internal path names, error messages, and references to admin, dashboard, billing, teams, uploads, exports, SSO, MFA, or roles.
+
+These details help build the first map of the application. The landing page may reveal how the frontend is structured, what features probably exist, what requests happen before login, and where the boundary between public and authenticated behaviour begins.
+
+Frontend clues are not proof of access. They only show that something exists. The backend response confirms what an unauthenticated user can actually access.
 
 ```text
-The landing page is not automatically important.
-It is a quick pre-auth reconnaissance opportunity.
+Frontend reveals clues
+Network shows behaviour
+Backend confirms access
+```
+
+Useful testing questions include:
+
+```text
+What loads before login?
+Are any API requests made unauthenticated?
+Are routes, API paths, feature flags, or environment values exposed?
+Are cookies or storage values created before login?
+Do JavaScript files reveal hidden features or internal paths?
+Are redirects handled by the frontend, backend, or both?
+Is only public-safe data returned?
+What should be compared again after login?
+```
+
+The landing page is not usually where deep testing happens. It is a public map that helps the tester understand the application’s surface before moving into registration, login, session, config, and authenticated functionality.
+
+```text
+Landing page = public map
+JavaScript = route and logic clues
+Network traffic = real request behaviour
+Backend response = access control truth
 ```
 
 Sometimes it gives gold. Sometimes it gives nothing.
